@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
+import { Container } from "../styles"
+
 
 const Home = () => {
   return (
-    <div>
+    <Container>
       <h2>Setores</h2>
       <p>Selecione o seu setor de origem a baixo para realizar a confirmação:</p>
       <ul>
@@ -15,7 +17,7 @@ const Home = () => {
         <li><Link to='uticirurgica'>UTI Cirúrgica</Link></li>
       </ul>
       
-    </div>
+    </Container>
   )
 }
 

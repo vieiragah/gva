@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
-
+import GlobalStyle from './globalstyle';
 // rotas
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
@@ -71,6 +70,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <GlobalStyle/>
     <RouterProvider router = {router}/>
   </React.StrictMode>,
 )

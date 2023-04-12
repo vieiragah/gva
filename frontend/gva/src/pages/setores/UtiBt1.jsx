@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-
+import { Container, Setores } from '../../styles'
 
 const UtiBt1 = () => {
   return (
-    <div>
-        <h3>UTI 3º Andar</h3>
-        <div>
+    <Container>
+        <h3>UTI BT 1</h3>
+        <Setores>
             <ul>
                 <h4>Número de pacientes</h4>
                 <li>Leito 1 <span>v</span></li>
@@ -29,9 +29,9 @@ const UtiBt1 = () => {
                 <li>valor dinâmico</li>
                 <li>valor dinâmico</li>
             </ul>
-        </div>
-        <button><Link to='/'>Voltar</Link></button>
-    </div>
+        </Setores>
+        <Link to='/'><button>Voltar</button></Link>
+    </Container>
   )
 }
 
