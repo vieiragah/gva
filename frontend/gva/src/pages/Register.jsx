@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Container, Form, Button } from '../styles';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -69,7 +70,7 @@ const Register = () => {
           </label>
           <Button disabled={!name || !email || !password || password != confirmPassword}>Cadastrar</Button>
         </Form>
-        
+        <Link to='/areaAdm'><button>Voltar</button></Link>
     </Container>
   )
 }
