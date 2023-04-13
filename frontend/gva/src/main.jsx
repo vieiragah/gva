@@ -15,6 +15,7 @@ import Uti3Andar from './pages/setores/Uti3Andar'
 import Uti4Andar from './pages/setores/Uti4Andar'
 import Uti5Andar from './pages/setores/Uti5Andar'
 import UtiCirurgica from './pages/setores/UtiCirurgica'
+import AreaAdm from './pages/AreaAdm'
 
 
 const router = createBrowserRouter([
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
         path:"/uticirurgica",
         element:<UtiCirurgica/>
       },
+      {
+        path:"/areaAdm",
+        element: <AreaAdm/>
+      }
     ]
   },
 ]);
