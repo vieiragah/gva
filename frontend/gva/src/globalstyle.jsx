@@ -16,7 +16,8 @@ const globalStyle = createGlobalStyle `
         height: 100%
     }
     button {
-        height: 30px;
+        margin: 5px;
+        height: 35px;
         width: 90px;
         border: none;
         background-color: #00E304;
