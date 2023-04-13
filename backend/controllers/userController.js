@@ -2,13 +2,13 @@ import userModel from "../models/User.js";
 
 const userRouter = {
     create: async (req, res) => {
+        const { name, email, password } =req.body
         try {
-            const user = {
-                name: req.body.name,
-                email: req.body.email,
-                password: req.body.password,
-            };
-            const response = await userModel.create(user)
+            const response = await userModel.create({
+                name,
+                email, 
+                password
+            })
             res.status(201).json({response, msg: "Criado com sucesso!"})
         } catch (error) {
             console.log(error);

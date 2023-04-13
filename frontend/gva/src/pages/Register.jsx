@@ -8,20 +8,24 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    registerUser()
-  };
-  
+
   const registerUser = axios.create({
-    baseURL: 'http://localhost:3000/api/users',
-    headers: {
-      "name": name,
-      "email": email,
-      "password": password
-    }
+    baseURL: 'http://localhost:3000/api',
+    
   })
-  console.log(name, email, password);
+//console.log(name, email, password);
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    registerUser.post(
+      "/users",
+      {
+        name,
+        email,
+        password
+      }
+    )
+    return ""
+  };
   
 
   return (
@@ -31,7 +35,8 @@ const Register = () => {
             <span>Nome:</span>
             <input type="text"
             placeholder='Digite seu nome'
-            value={name}
+            id='name'
+            name='name'
             onChange={(e) => setName(e.target.value)}
             />
           </label>
@@ -39,9 +44,8 @@ const Register = () => {
             <span>E-mail:</span>
             <input type="email" 
             name='email'
+            id='email'
             placeholder='Digite seu e-mail'
-            required
-            value={email}
             onChange={(e) => setEmail(e.target.value)}
 
             />
@@ -50,7 +54,8 @@ const Register = () => {
             <span>Senha:</span>
             <input type="password"
             placeholder='Crie uma senha'
-            value={password}
+            name='password'
+            id='password'
             onChange={(e) => setPassword(e.target.value)}
             />
           </label>
@@ -62,7 +67,7 @@ const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </label>
-          <Button disabled={!name || !email || password !== confirmPassword}>Cadastrar</Button>
+          <Button disabled={!name || !email || !password || password != confirmPassword}>Cadastrar</Button>
         </Form>
         
     </Container>
