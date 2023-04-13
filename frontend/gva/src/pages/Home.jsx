@@ -16,6 +16,9 @@ const Home = () => {
         <li><Link to='uti5andar'>UTI 5ª Andar</Link></li>
         <li><Link to='uticirurgica'>UTI Cirúrgica</Link></li>
       </ul>
+      <div>
+        <Link to='areaAdm'><p>Área do adm</p></Link>
+      </div>
       
     </Container>
   )
