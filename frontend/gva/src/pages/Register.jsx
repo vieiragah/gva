@@ -8,6 +8,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [adm, setAdm] = useState('')
 
 
   const registerUser = axios.create({
@@ -22,12 +23,11 @@ const Register = () => {
       {
         name,
         email,
-        password
+        password,
       }
-    )
-    return ""
-  };
-  
+      )
+    };
+
 
   return (
     <Container>

@@ -12,7 +12,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         require: true
-    }
+    },
 },
 { timestamps: true })
 const userModel = model("user", userSchema)

@@ -7,7 +7,7 @@ const userRouter = {
             const response = await userModel.create({
                 name,
                 email, 
-                password
+                password,
             })
             res.status(201).json({response, msg: "Criado com sucesso!"})
         } catch (error) {
