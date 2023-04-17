@@ -13,7 +13,7 @@ const globalStyle = createGlobalStyle `
         color: #fff;
     }
     body, html {
-        height: 100%
+        height: 100vh
     }
     button {
         margin: 5px;
@@ -29,7 +29,9 @@ const globalStyle = createGlobalStyle `
 
     table {
         border-collapse: collapse;
-        width: 100%;
+        max-height: 500px;
+        overflow: auto;
+
       }
       td, th {
         border: 1px solid black;

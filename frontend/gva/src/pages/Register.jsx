@@ -8,7 +8,8 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [adm, setAdm] = useState('')
+  const [adm, setAdm] = useState(false)
+  const [error, setError] = useState('')
 
 
   const registerUser = axios.create({
@@ -18,16 +19,27 @@ const Register = () => {
 //console.log(name, email, password);
     const handleSubmit = (e) => {
     e.preventDefault();
+
+    setError('')
+
     registerUser.post(
       "/users",
       {
         name,
         email,
         password,
+        adm,
       }
-      )
+      ).then(res => {
+        console.log(res);
+      }).catch(error => {
+        console.log(error.res.data.msg);
+      })
+      setName('')
+      setEmail('')
+      setPassword('')
+      
     };
-
 
   return (
     <Container>
@@ -63,11 +75,17 @@ const Register = () => {
           <label>
             <span>confirme a senha:</span>
             <input type="password" 
-            placeholder='Senha com 6 digitos'
+            placeholder='Confirmação da senha'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </label>
+          <label>Administrador:</label>
+          <select name='adm'>
+            <option value={'false'}>false</option>
+            <option value={'true'}>true</option>
+          </select>
+          {error && <p>{error}</p>}
           <Button disabled={!name || !email || !password || password != confirmPassword}>Cadastrar</Button>
         </Form>
         <Link to='/areaAdm'><button>Voltar</button></Link>
