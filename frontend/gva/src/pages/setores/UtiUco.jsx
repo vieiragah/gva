@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Container, Setores } from '../../styles'
 
-const UtiUco = () => {
+export const UtiUco = () => {
   return (
     <Container>
         <h3>UTI UCO</h3>
@@ -34,5 +34,3 @@ const UtiUco = () => {
     </Container>
   )
 }
-
-export default UtiUco

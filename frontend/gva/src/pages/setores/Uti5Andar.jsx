@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Container, Setores } from '../../styles'
 
-
-const Uti5Andar = () => {
+export const Uti5Andar = () => {
   return (
     <Container>
         <h3>UTI 5º Andar</h3>
@@ -35,5 +34,3 @@ const Uti5Andar = () => {
     </Container>
   )
 }
-
-export default Uti5Andar

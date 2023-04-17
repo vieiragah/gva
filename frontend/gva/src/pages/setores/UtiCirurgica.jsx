@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Container, Setores } from '../../styles'
 
-const UtiCururgica = () => {
+export const UtiCirurgica = () => {
   return (
     <Container>
         <h3>UTI Cirúrgica</h3>
@@ -34,5 +34,3 @@ const UtiCururgica = () => {
     </Container>
   )
 }
-
-export default UtiCururgica

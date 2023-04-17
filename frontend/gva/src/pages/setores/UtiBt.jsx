@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Container, Setores } from '../../styles'
 
-const UtiBt = () => {
+export const UtiBt = () => {
   return (
     <Container>
         <h3>UTI BT </h3>
@@ -34,5 +34,3 @@ const UtiBt = () => {
     </Container>
   )
 }
-
-export default UtiBt

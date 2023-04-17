@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 
 const AreaAdm = (props) => {
   const [data, setData] = useState([]);
+  const [initial, setInitial] = useState(() => {})
+
   // Buscar todos os usuários
   useEffect(() => {
     axios
@@ -16,21 +18,22 @@ const AreaAdm = (props) => {
         console.log(error);
       });
   }, []);
-  console.log(data);
-  // // Deletar um usuário
-  //   const {id, onDelete} = props
-  //   function handleDelete() {
-  //     onDelete(id)
-  //   }
-  //   useEffect(() => {
-  //     axios.delete('http://localhost:3000/api/:id')
-  //     .then((del) => {
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
-  //   })
 
+ 
+  const handleDelete = (id) => {
+    if (window.confirm("Deseja excluir este usuário?")) {
+      axios
+        .delete(`http://localhost:3000/api/users/${id}`)
+        .then(() => {
+          document.location.reload()
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  
   return (
     <Container>
       <div>
@@ -44,6 +47,7 @@ const AreaAdm = (props) => {
             <th>name:</th>
             <th>email:</th>
             <th>senha:</th>
+            <th>edição:</th>
           </tr>
         </thead>
         <tbody>
@@ -53,6 +57,10 @@ const AreaAdm = (props) => {
                 <td>{users.name}</td>
                 <td>{users.email}</td>
                 <td>{users.password}</td>
+                <td>
+                  <button>editar</button>
+                  <button onClick={() => handleDelete(users._id)}>Excluir</button>
+                </td>
               </tr>
             );
           })}
