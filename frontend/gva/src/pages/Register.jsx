@@ -8,7 +8,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [adm, setAdm] = useState(false)
+  const [adm, setAdm] = useState(null)
   const [error, setError] = useState('')
 
 
@@ -19,26 +19,22 @@ const Register = () => {
 //console.log(name, email, password);
     const handleSubmit = (e) => {
     e.preventDefault();
-
+    let formatedEmail = email.toLocaleLowerCase()
     setError('')
-
     registerUser.post(
       "/users",
       {
         name,
-        email,
+        email: formatedEmail,
         password,
         adm,
       }
       ).then(res => {
-        console.log(res);
+        console.log(res.data);
       }).catch(error => {
         console.log(error.res.data.msg);
       })
-      setName('')
-      setEmail('')
-      setPassword('')
-      
+
     };
 
   return (
@@ -81,9 +77,9 @@ const Register = () => {
             />
           </label>
           <label>Administrador:</label>
-          <select name='adm'>
-            <option value={'false'}>false</option>
-            <option value={'true'}>true</option>
+          <select name="adm" onChange={(e) => setAdm(e.target.value)}>
+            <option value='false'>false</option>
+            <option value='true'>true</option>
           </select>
           {error && <p>{error}</p>}
           <Button disabled={!name || !email || !password || password != confirmPassword}>Cadastrar</Button>

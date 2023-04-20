@@ -32,6 +32,18 @@ const AreaAdm = (props) => {
         });
     }
   };
+  const handleEdit = (id) => {
+    if (window.confirm("Deseja editar este usuário?")) {
+      axios
+        .delete(`http://localhost:3000/api/users/${id}`)
+        .then(() => {
+          document.location.reload()
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
   
   return (
@@ -58,7 +70,7 @@ const AreaAdm = (props) => {
                 <td>{users.email}</td>
                 <td>{users.password}</td>
                 <td>
-                  <button>editar</button>
+                  <button onClick={() => handleEdit(users._id)}>editar</button>
                   <button onClick={() => handleDelete(users._id)}>Excluir</button>
                 </td>
               </tr>

@@ -5,3 +5,8 @@
 3. Antes de tudo, verificar se é adm, se for adm ele deixa criar o usuário.
 
 4. todas as alterações são necessárias q seja adm
+
+express session
+
+localStorage.setItem("token", response.data.token);
+localStorage.getItem('token')

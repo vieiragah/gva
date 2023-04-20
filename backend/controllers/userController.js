@@ -7,7 +7,6 @@ dotenv.config();
 const userRouter = {
   create: async (req, res) => {
     const { name, email, password, adm } = req.body;
-
     try {
       // Verifica se o e-mail já existe no banco de dados
       const existingEmail = await userModel.findOne({ email });
@@ -19,7 +18,7 @@ const userRouter = {
           .status(400)
           .json({ msg: "A senha deve contar no mínimo 6 caracteres." });
       }
-
+      
       const response = await userModel.create({
         name,
         email,
@@ -89,7 +88,7 @@ const userRouter = {
       const id = req.params.id;
       const user = await userModel.findById(id);
       if (!user) {
-        res.status(201).json({ msg: "Usuário não encontrado" });
+        res.status(404).json({ msg: "Usuário não encontrado" });
         return;
       }
       const deletedUser = await userModel.findByIdAndDelete(id);
@@ -99,6 +98,12 @@ const userRouter = {
     } catch (error) {
       console.log(error);
     }
+  },
+  edit: async (req, res) => {
+    let id = req.params.id;
+    let editUser = await userModel.findByIdAndUpdate(id)
+    res.statusa(200).json({ editUser, msg: "Usuário editado com sucesso!"})
+
   },
     checkToken: (req, res, next) => {
     const authHeader = req.headers['authorization']

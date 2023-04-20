@@ -149,3 +149,6 @@ export const Button = styled.button`
     background-color: ${props => props.disabled ? 'red' : 'darkblue'};
   }
 `;
+export const PacientClassification = styled.input`
+    margin-left: 5px;
+`;

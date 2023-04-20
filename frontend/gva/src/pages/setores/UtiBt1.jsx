@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Container, Setores } from '../../styles'
+import { Container, Setores, PacientClassification } from '../../styles'
 
 export const UtiBt1 = () => {
   return (
@@ -8,16 +8,57 @@ export const UtiBt1 = () => {
         <Setores>
             <ul>
                 <h4>Número de pacientes</h4>
-                <li>Leito 1 <span>v</span></li>
-                <li>Leito 2 <span>a</span></li>
-                <li>Leito 3 <span>v</span></li>
-                <li>Leito 4 <span>a</span></li>
-                <li>Leito 5 <span>v</span></li>
-                <li>Leito 6 <span>a</span></li>
-                <li>Leito 7 <span>a</span></li>
-                <li>Leito 8 <span>v</span></li>
-                <li>Leito 9 <span>v</span></li>
-                <li>Leito 10 <span>v</span></li>
+                <li>
+                  Leito 1
+                  <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
+                <li>Leito 2 
+                <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
+                <li>Leito 3 
+                  <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
+                <li>Leito 4 
+                  <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
+                <li>Leito 5 
+                  <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
+                <li>Leito 6 
+                  <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
+                <li>Leito 7 
+                  <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
+                <li>Leito 8 
+                  <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
+                <li>Leito 9 
+                  <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
+                <li>Leito 10 
+                  <input type="radio" />
+                  <input type="radio" />
+                  <input type="radio" />
+                </li>
             </ul>
             <ul>
                 <h4>Funcionários</h4>

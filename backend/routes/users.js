@@ -16,6 +16,7 @@ router
     .route("/users/:id")
     .get(userRouter.get)
     .delete(userRouter.delete)
+    .patch(userRouter.edit)
     
     
 router.route('/token/:id').get(userRouter.checkToken)
