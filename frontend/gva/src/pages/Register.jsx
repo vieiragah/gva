@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Container, Form, Button } from '../styles';
+import { Container, Form } from '../styles';
+import { Button } from '../styles/Button';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
@@ -31,6 +32,7 @@ const Register = () => {
       }
       ).then(res => {
         console.log(res.data);
+        window.location.reload()
       }).catch(error => {
         console.log(error.res.data.msg);
       })
@@ -82,9 +84,9 @@ const Register = () => {
             <option value='true'>true</option>
           </select>
           {error && <p>{error}</p>}
-          <Button disabled={!name || !email || !password || password != confirmPassword}>Cadastrar</Button>
+          <Button $dinamicButton disabled={!name || !email || !password || password != confirmPassword}>Cadastrar</Button>
         </Form>
-        <Link to='/areaAdm'><button>Voltar</button></Link>
+        <Link to='/areaAdm'><Button>Voltar</Button></Link>
     </Container>
   )
 }

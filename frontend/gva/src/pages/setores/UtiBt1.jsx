@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Container, Setores, PacientClassification } from '../../styles'
+import { Button } from '../../styles/Button'
+
 
 export const UtiBt1 = () => {
   return (
@@ -71,7 +73,7 @@ export const UtiBt1 = () => {
                 <li>valor dinâmico</li>
             </ul>
         </Setores>
-        <Link to='/'><button>Voltar</button></Link>
+        <Link to='/'><Button>Voltar</Button></Link>
     </Container>
   )
 }

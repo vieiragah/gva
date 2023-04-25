@@ -1,23 +1,62 @@
-import { Navgate } from '../styles'
-import {Link} from 'react-router-dom'
+import React, { useState } from "react";
+import { Button } from "../styles/Button";
+import { Li, Ul } from "../styles/List";
+import { Nav } from "../styles/Nav";
+import { Link } from "react-router-dom";
+import { Logo, Name } from "../styles/Logo";
+import { useNavigate } from "react-router-dom";
+
+
+
+const UserLogged = ({ props }) => {
+  const navigator = useNavigate();
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+
+  const removeUserLogged = () => {
+    localStorage.removeItem("user");
+    setIsLoggedOut(true);
+    navigator("/login");
+  };
+
+  return (
+    <>
+      <Ul>
+        <Li>
+          {!isLoggedOut && (
+            <Button>
+            <Link to="/">Setor</Link>
+          </Button>
+          )}
+          {!isLoggedOut && (
+            <Name>{props}</Name>
+          )}
+          {!isLoggedOut && (
+            <Button $redButton onClick={removeUserLogged}>Sair</Button>
+          )}
+        </Li>
+      </Ul>
+    </>
+  );
+};
 
 const NavBar = () => {
-  return (
-    <div>
-        <header>
-            <Navgate>
-                <h1><Link to='/'>GVA <span>Med</span></Link></h1>
-                <ul>
-                    <li><Link to='/'>Setor</Link></li>
-                    <li><Link to='/login'>Entrar</Link></li>
-                </ul>
-            </Navgate>
-        </header>
-    </div>
-  )
-}
-//                    <li><Link to='/register'>Cadastrar-se</Link></li>
+  const checkUserLogged = localStorage.getItem("user");
+  const data = JSON.parse(checkUserLogged);
 
-//                                       <li>{user ? "sair" : ""}</li>
-//uma renderização condicional no ultimo li, trazendo o status de usuário logado ele aparece o sair, caso contrado nada ou então algum css por trás para não criar aquele padding que ficaria no canto direto. (perguntar ao rafa)
-export default NavBar
+  return (
+    <Nav>
+      <Link to="/">
+        <Logo>
+          GVA <span>Med</span>
+        </Logo>
+      </Link>
+      <Ul>
+        {checkUserLogged && (
+          <UserLogged props={data.user.name} />
+        )}
+      </Ul>
+    </Nav>
+  );
+};
+
+export default NavBar;

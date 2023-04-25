@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Container, Setores } from '../../styles'
+import { Button } from '../../styles/Button'
 
 
 export const Uti3Andar = () => {
@@ -31,7 +32,7 @@ export const Uti3Andar = () => {
                 <li>valor dinâmico</li>
             </ul>
         </Setores>
-        <Link to='/'><button>Voltar</button></Link>
+        <Link to='/'><Button>Voltar</Button></Link>
     </Container>
   )
 }

@@ -1,34 +1,39 @@
 import { useState } from 'react'
-import { Container, Form, Button } from '../styles'
+import { Container, Form } from '../styles'
+import { Button } from '../styles/Button';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [tokenUser, setTokenUser] = useState(null)
+  const navigate = useNavigate()
 
-  // const userLogin = axios.login({
-  //   baseURL: 'http://localhost:3000/api',
-    
-  // })
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-    
-  //   userLogin.post(
-  //     '/login',
-  //     {
-  //       email, 
-  //       password
-  //     }
-  //     ).then(res => {
-  //       console.log(res);
-  //     }).catch(error => {
-  //       console.log(error);
-  //     })
-  // }
- 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post(
+      'http://localhost:3000/api/login',
+      {
+        email,
+        password
+      }
+    ).then(res => {
+      localStorage.setItem('user', JSON.stringify(res.data))
+
+      navigate('/')
+      window.location.reload()
+
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
 
   return (
     <Container>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <label>
             <span>E-mail:</span>
             <input type="email" 
@@ -49,7 +54,8 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <Button disabled={!email || !password}>Entrar</Button>
+          <Button $dinamicButton disabled={!email || !password} onClick={(e) => setTokenUser(navigate)}>Entrar</Button>
+          
         </Form> 
     </Container>
   )

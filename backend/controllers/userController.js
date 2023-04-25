@@ -57,7 +57,7 @@ const userRouter = {
         },
         secret
       );
-      res.status(200).json({ msg: "Login efetuado com sucesso.", token });
+      res.status(200).json({ user, token });
     } catch (error) {
       console.log(error);
     }
@@ -99,10 +99,20 @@ const userRouter = {
       console.log(error);
     }
   },
-  edit: async (req, res) => {
-    let id = req.params.id;
-    let editUser = await userModel.findByIdAndUpdate(id)
-    res.statusa(200).json({ editUser, msg: "Usuário editado com sucesso!"})
+  // Função para editar um usuário pelo ID
+  editUser: async (req, res) => {
+    try {
+      const userId = req.params.id;
+      const updates = req.body; // Os dados atualizados do usuário
+
+      // Atualize o usuário no banco de dados
+      const user = await userModel.findByIdAndUpdate(userId, updates, { new: true });
+
+      res.json(user); // Retorna o usuário atualizado em JSON
+    } catch (error) {
+      res.status(500).json({ msg: "Algo deu errado" });
+    }
+  
 
   },
     checkToken: (req, res, next) => {

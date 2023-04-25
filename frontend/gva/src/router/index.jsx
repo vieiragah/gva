@@ -7,6 +7,10 @@ import Register from '../pages/Register';
 import * as Uti from '../pages/setores/index'
 import AreaAdm from '../pages/AreaAdm'
 
+const isLogged = () => {
+  localStorage.getItem("user")
+}
+
 export const routes = createBrowserRouter([
     {
       path: "/",

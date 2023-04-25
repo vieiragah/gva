@@ -3,33 +3,33 @@ import styled from 'styled-components';
 
 //NavBar
 
-export const Navgate = styled.nav`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #E8E1E2;
-    padding: 14px;
-    h1 a{
-        color: #000;
-    }
+// export const Navgate = styled.nav`
+//     /* display: flex;
+//     justify-content: space-around;
+//     align-items: center;
+//     background-color: #E8E1E2;
+//     padding: 14px; */
+//     h1 a{
+//         color: #000;
+//     }
 
-    span{
-        color: red;
-    }
-        ul {
-            display: flex;
-            justify-content: space-between;
-            gap: 5px;
-        }
-        li{
-            list-style-type: none;
-            color: #fff;
-            background-color: #000;
-            padding: 8px;
-            border-radius: 4px;
-        }
+//     span{
+//         color: red;
+//     }
+//         /* ul {
+//             display: flex;
+//             justify-content: space-between;
+//             gap: 5px;
+//         } */
+//         /* li{
+//             list-style-type: none;
+//             color: #fff;
+//             background-color: #000;
+//             padding: 8px;
+//             border-radius: 4px;
+//         } */
 
-`;
+// `;
 //Main
 export const Container = styled.div`
     background-color: #E8E1E2;
@@ -51,10 +51,7 @@ export const Container = styled.div`
         list-style: none;
     }
     li {
-        padding: 8px;
-        margin: 3px;
-        border-radius: 10px;
-        background-color: #545252;
+
     }
     a {
         color: #000;
@@ -137,18 +134,18 @@ export const End = styled.footer`
         color: #000;
     }
 `;
-export const Button = styled.button`
-  background-color: ${props => props.disabled ? 'red' : 'blue'};
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+// export const Button = styled.button`
+//   background-color: ${props => props.disabled ? 'red' : 'blue'};
+//   color: white;
+//   padding: 10px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
 
-  &:hover {
-    background-color: ${props => props.disabled ? 'red' : 'darkblue'};
-  }
-`;
+//   &:hover {
+//     background-color: ${props => props.disabled ? 'red' : 'darkblue'};
+//   }
+// `;
 export const PacientClassification = styled.input`
     margin-left: 5px;
 `;
