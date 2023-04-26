@@ -5,8 +5,11 @@ export const Button = styled.button`
   color: white;
   font-weight: 600;
   width: 70px;
+  height: 35px;
+  margin: 5px;
   border: none;
   border-radius: 10px;
+  cursor: pointer;
 
   ${(props) =>
     props.$redButton &&

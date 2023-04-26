@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import Home from '../pages/Home';
-import ErrorPage from '../pages/ErrorPage';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
+import Home from '../pages/main/Home';
+import ErrorPage from '../pages/main/ErrorPage';
+import Login from '../pages/main/Login';
+import Register from '../pages/main/Register';
 import * as Uti from '../pages/setores/index'
-import AreaAdm from '../pages/AreaAdm'
+import AreaAdm from '../pages/main/AreaAdm'
+import Sectors from '../pages/main/Sectors';
 
 const isLogged = () => {
   localStorage.getItem("user")
@@ -30,31 +31,35 @@ export const routes = createBrowserRouter([
           element: <Register/>
         },
         {
-          path: "/utibt1",
+          path: "/sectors",
+          element: <Sectors/>
+        },
+        {
+          path: "/sectors/utibt1",
           element: <Uti.UtiBt1/>
         },
         {
-          path:"/utibt",
+          path:"/sectors/utibt",
           element:<Uti.UtiBt/>
         },
         {
-          path:"/utiuco",
+          path:"/sectors/utiuco",
           element:<Uti.UtiUco/>
         },
         {
-          path:"/uti3andar",
+          path:"/sectors/uti3andar",
           element:<Uti.Uti3Andar/>
         },
         {
-          path:"/uti4andar",
+          path:"/sectors/uti4andar",
           element:<Uti.Uti4Andar/>
         },
         {
-          path:"/uti5andar",
+          path:"/sectors/uti5andar",
           element:<Uti.Uti5Andar/>
         },
         {
-          path:"/uticirurgica",
+          path:"/sectors/uticirurgica",
           element:<Uti.UtiCirurgica/>
         },
         {

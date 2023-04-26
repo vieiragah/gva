@@ -12,20 +12,10 @@ const globalStyle = createGlobalStyle `
     a:visited {
         color: #fff;
     }
-    body, html {
-        height: 100vh
-    }
-    button {
-        margin: 5px;
-        height: 35px;
-        width: 90px;
-        border: none;
-        background-color: #00E304;
-        color: #000;
-        cursor: pointer;
-        border-radius: 15px;
-    }
+    body {
+        height: 100vh;
 
+    }
 
     table {
         border-collapse: collapse;

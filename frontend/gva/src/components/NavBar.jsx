@@ -24,7 +24,7 @@ const UserLogged = ({ props }) => {
         <Li>
           {!isLoggedOut && (
             <Button>
-            <Link to="/">Setor</Link>
+            <Link to="/sectors">Setor</Link>
           </Button>
           )}
           {!isLoggedOut && (

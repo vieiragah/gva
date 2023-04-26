@@ -4,6 +4,6 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #e8e1e2;
+  background-color: #E8E1E2;
   padding: 14px;
 `;

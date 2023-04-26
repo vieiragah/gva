@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { Container } from "../styles";
-import { Button } from "../styles/Button";
-import { Ul, Li } from "../styles/List";
+import { Container } from "../../styles/Container";
+import { Button } from "../../styles/Button";
+import { Ul, Li } from "../../styles/List";
 
-const Home = () => {
+const Sectors = () => {
   return (
     <Container>
       <h2>Setores</h2>
@@ -33,11 +33,9 @@ const Home = () => {
           <Link to="uticirurgica">UTI Cirúrgica</Link>
         </Li>
       </Ul>
-      <Link to="areaAdm">
-        <Button>ADM</Button>
-      </Link>
+      <Link to='/'><Button>Voltar</Button></Link>
     </Container>
   );
 };
 
-export default Home;
+export default Sectors;

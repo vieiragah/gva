@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import { Container, Form } from '../styles'
-import { Button } from '../styles/Button';
+import * as S from '../../styles/Index'
 import axios from 'axios';
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -32,8 +31,8 @@ const Login = () => {
 
 
   return (
-    <Container>
-        <Form onSubmit={handleSubmit}>
+    <S.Container>
+        <S.Form onSubmit={handleSubmit}>
           <label>
             <span>E-mail:</span>
             <input type="email" 
@@ -54,10 +53,10 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <Button $dinamicButton disabled={!email || !password} onClick={(e) => setTokenUser(navigate)}>Entrar</Button>
+          <S.Button $dinamicButton disabled={!email || !password} onClick={(e) => setTokenUser(navigate)}>Entrar</S.Button>
           
-        </Form> 
-    </Container>
+        </S.Form> 
+    </S.Container>
   )
 }
 

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Container, Form } from '../styles';
-import { Button } from '../styles/Button';
+import * as S from '../../styles/Index'
 import { Link } from 'react-router-dom';
 
 const Register = () => {
@@ -40,8 +39,8 @@ const Register = () => {
     };
 
   return (
-    <Container>
-        <Form onSubmit={handleSubmit}>
+    <S.Container>
+        <S.Form onSubmit={handleSubmit}>
           <label>
             <span>Nome:</span>
             <input type="text"
@@ -84,10 +83,10 @@ const Register = () => {
             <option value='true'>true</option>
           </select>
           {error && <p>{error}</p>}
-          <Button $dinamicButton disabled={!name || !email || !password || password != confirmPassword}>Cadastrar</Button>
-        </Form>
-        <Link to='/areaAdm'><Button>Voltar</Button></Link>
-    </Container>
+          <S.Button $dinamicButton disabled={!name || !email || !password || password != confirmPassword}>Cadastrar</S.Button>
+        </S.Form>
+        <Link to='/areaAdm'><S.Button>Voltar</S.Button></Link>
+    </S.Container>
   )
 }
 
