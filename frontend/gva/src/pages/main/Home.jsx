@@ -1,15 +1,25 @@
 import { Link } from "react-router-dom";
-import { Button } from "../../styles/Button";
-import { Container } from "../../styles/Container";
+
+import * as S from '../../styles/Index'
 
 const Home = () => {
   return (
-    <Container>
-      <h1>Uma home massa</h1>
-      <Link to="areaAdm">
-        <Button>ADM</Button>
+    <S.Container>
+      <Link to='sectors'>
+        <S.Card>
+        <h2>Setores</h2>
+        <p>Acesse o setor em que trabalha</p>
+      </S.Card>
       </Link>
-    </Container>
+      
+      <S.Card>
+        <h2>Em breve...</h2>
+        <p>Sistema para monitoramento de materiais.</p>
+      </S.Card>
+      <Link to="areaAdm">
+        <S.Button>ADM</S.Button>
+      </Link>
+    </S.Container>
   );
 };
 

@@ -1,13 +1,24 @@
 import * as S from '../../styles/Index'
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const AreaAdm = () => {
   const [data, setData] = useState([]);
   const [editItem, setEditItem] = useState(null);
   const [editedData, setEditedData] = useState({});
 
+
+  // let teste  = useMemo(() => {
+  //   axios.get("http://localhost:3000/api/users")
+  //   .then((res) => {
+  //     return setData(res.data);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   })
+  // })
+  // teste()
 
   // Buscar todos os usuários
   useEffect(() => {
@@ -20,6 +31,7 @@ const AreaAdm = () => {
         console.log(error);
       });
   }, []);
+
 
   const handleDelete = (id) => {
     if (window.confirm("Deseja excluir este usuário?")) {
@@ -89,12 +101,12 @@ const AreaAdm = () => {
               <tr key={users._id}>
                 <td>
                   {users.name}
-                  {editItem === users._id ? (
+                  {editItem === users._id && (
                     <input type="text" 
                       value={users.name}
                       onChange={(e) => handleInputChange(e, 'name')}
                     />
-                  ):('')}
+                  )}
                 </td>
                 <td>
                   {users.email}
@@ -104,13 +116,12 @@ const AreaAdm = () => {
                       onChange={(e) => handleInputChange(e, 'email')}
                     />
                   ):('')}
-                
                 </td>
                 <td>
                   {users.password}
                   {editItem === users._id ? (
-                    <input type="text" 
-                      value={users.password}
+                    <input type="text"
+                    
                       onChange={(e) => handleInputChange(e, 'password')}
                     />
                   ):('')}
@@ -147,3 +158,4 @@ const AreaAdm = () => {
 };
 
 export default AreaAdm;
+

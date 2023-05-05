@@ -5,4 +5,6 @@ export * from './Logo'
 export * from './Nav'
 export * from './Table'
 export * from './Form'
+export * from './Card'
+export * from './Sectors'
 

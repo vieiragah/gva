@@ -1,6 +1,7 @@
 import { Footerr } from '../styles/Footer'
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa'
 
+
 const Footer = () => {
   return (
     <Footerr>

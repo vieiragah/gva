@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import App from '../App';
+import App from '../pages/App';
 import Home from '../pages/main/Home';
 import ErrorPage from '../pages/main/ErrorPage';
 import Login from '../pages/main/Login';
@@ -7,10 +7,7 @@ import Register from '../pages/main/Register';
 import * as Uti from '../pages/setores/index'
 import AreaAdm from '../pages/main/AreaAdm'
 import Sectors from '../pages/main/Sectors';
-
-const isLogged = () => {
-  localStorage.getItem("user")
-}
+import Escala from '../pages/main/Escala';
 
 export const routes = createBrowserRouter([
     {
@@ -65,6 +62,10 @@ export const routes = createBrowserRouter([
         {
           path:"/areaAdm",
           element: <AreaAdm/>
+        },
+        {
+          path:"/sectors/uti3andar/escala",
+          element: <Escala/>
         }
       ]
     },

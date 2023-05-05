@@ -2,12 +2,14 @@ import userModel from "../models/User.js";
 import bcrypt from "bcrypt";
 import * as dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+
 dotenv.config();
 
 const userRouter = {
   create: async (req, res) => {
     const { name, email, password, adm } = req.body;
     try {
+      
       // Verifica se o e-mail já existe no banco de dados
       const existingEmail = await userModel.findOne({ email });
       if (existingEmail) {
@@ -18,15 +20,14 @@ const userRouter = {
           .status(400)
           .json({ msg: "A senha deve contar no mínimo 6 caracteres." });
       }
-      
       const response = await userModel.create({
         name,
         email,
         password: await bcrypt.hash(password, 12),
-        adm,
+        adm
       });
 
-      res.status(201).json({ response, msg: "Criado com sucesso!" });
+      res.status(201).json({response, msg: "Criado com sucesso!" });
     } catch (error) {
       console.log(error);
     }
@@ -75,7 +76,7 @@ const userRouter = {
       const id = req.params.id;
       const user = await userModel.findById(id, "-password");
       if (!user) {
-        res.status(201).json({ msg: "Usuário não encontrado" });
+        res.status(404).json({ msg: "Usuário não encontrado" });
         return;
       }
       res.json(user);
@@ -99,36 +100,43 @@ const userRouter = {
       console.log(error);
     }
   },
-  // Função para editar um usuário pelo ID
   editUser: async (req, res) => {
     try {
-      const userId = req.params.id;
-      const updates = req.body; // Os dados atualizados do usuário
+      const userInfo = {
+        id: req.params.id,
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+      };
+      const response = await userModel.findByIdAndUpdate(
+        userInfo.id,
+        {
+          email: userInfo?.email,
+          name: userInfo?.name,
+          password: await bcrypt.hash(userInfo?.password, 12),
+        },
+        { new: false }
+      );
 
-      // Atualize o usuário no banco de dados
-      const user = await userModel.findByIdAndUpdate(userId, updates, { new: true });
-
-      res.json(user); // Retorna o usuário atualizado em JSON
+      res.json(response);
     } catch (error) {
       res.status(500).json({ msg: "Algo deu errado" });
     }
-  
-
   },
-    checkToken: (req, res, next) => {
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split("")[1]
-    if(!token) {
-        return res.status(401).json({msg: "Acesso negado"})
+  checkToken: (req, res, next) => {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split("")[1];
+    if (!token) {
+      return res.status(401).json({ msg: "Acesso negado" });
     }
     try {
-        const secret = process.env.SECRET
-        jwt.verify(token, secret)
-        next()
+      const secret = process.env.SECRET;
+      jwt.verify(token, secret);
+      next();
     } catch (error) {
-        res.status(400).json({msg: "Token inválido!"})
+      res.status(400).json({ msg: "Token inválido!" });
     }
-  }
+  },
 };
 
 export default userRouter;

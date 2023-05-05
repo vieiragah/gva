@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import { Button } from "../styles/Button";
-import { Li, Ul } from "../styles/List";
-import { Nav } from "../styles/Nav";
+import * as S from '../styles/Index'
 import { Link } from "react-router-dom";
-import { Logo, Name } from "../styles/Logo";
 import { useNavigate } from "react-router-dom";
-
-
 
 const UserLogged = ({ props }) => {
   const navigator = useNavigate();
@@ -20,21 +15,16 @@ const UserLogged = ({ props }) => {
 
   return (
     <>
-      <Ul>
-        <Li>
+      <S.Ul>
+        <S.Li>
+          {!isLoggedOut && <S.Name>{props}</S.Name>}
           {!isLoggedOut && (
-            <Button>
-            <Link to="/sectors">Setor</Link>
-          </Button>
+            <S.Button $redButton onClick={removeUserLogged}>
+              Sair
+            </S.Button>
           )}
-          {!isLoggedOut && (
-            <Name>{props}</Name>
-          )}
-          {!isLoggedOut && (
-            <Button $redButton onClick={removeUserLogged}>Sair</Button>
-          )}
-        </Li>
-      </Ul>
+        </S.Li>
+      </S.Ul>
     </>
   );
 };
@@ -44,18 +34,14 @@ const NavBar = () => {
   const data = JSON.parse(checkUserLogged);
 
   return (
-    <Nav>
+    <S.Nav>
       <Link to="/">
-        <Logo>
+        <S.Logo>
           GVA <span>Med</span>
-        </Logo>
+        </S.Logo>
       </Link>
-      <Ul>
-        {checkUserLogged && (
-          <UserLogged props={data.user.name} />
-        )}
-      </Ul>
-    </Nav>
+      <S.Ul>{checkUserLogged && <UserLogged props={data.user.name} />}</S.Ul>
+    </S.Nav>
   );
 };
 
