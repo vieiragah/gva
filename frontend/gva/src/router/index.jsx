@@ -64,7 +64,7 @@ export const routes = createBrowserRouter([
           element: <AreaAdm/>
         },
         {
-          path:"/sectors/uti3andar/escala",
+          path:"/sectors/escala",
           element: <Escala/>
         }
       ]

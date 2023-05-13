@@ -1,22 +1,15 @@
-import { createContext, useState } from "react";
+// import { createContext } from "react";
+// import UseAuthenticator from "../hooks/UseAuthenticator";
 
-const AuthContext = createContext();
+// const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  function login() {
-    setIsAuthenticated(true);
-  }
+// const AuthProvider = ({ children }) => {
 
-  function logout() {
-    setIsAuthenticated(false);
-  }
+//   return (
+//     <AuthContext.Provider value={{ UseAuthenticator }}>
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// };
 
-  return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export { AuthContext, AuthProvider };
+// export { AuthContext, AuthProvider };

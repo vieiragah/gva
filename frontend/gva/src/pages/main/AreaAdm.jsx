@@ -8,18 +8,6 @@ const AreaAdm = () => {
   const [editItem, setEditItem] = useState(null);
   const [editedData, setEditedData] = useState({});
 
-
-  // let teste  = useMemo(() => {
-  //   axios.get("http://localhost:3000/api/users")
-  //   .then((res) => {
-  //     return setData(res.data);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   })
-  // })
-  // teste()
-
   // Buscar todos os usuários
   useEffect(() => {
     axios

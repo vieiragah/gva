@@ -8,7 +8,8 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [adm, setAdm] = useState(null)
+  const [adm, setAdm] = useState(false)
+  const [enf, setEnf] = useState(false)
   const [error, setError] = useState('')
 
 
@@ -28,6 +29,7 @@ const Register = () => {
         email: formatedEmail,
         password,
         adm,
+        enf
       }
       ).then(res => {
         console.log(res.data);
@@ -82,8 +84,16 @@ const Register = () => {
             <option value='false'>false</option>
             <option value='true'>true</option>
           </select>
+          <label>Enfermeiro:</label>
+          <select name="enf" onChange={(e) => setEnf(e.target.value)}>
+            <option value='false'>false</option>
+            <option value='true'>true</option>
+          </select>
           {error && <p>{error}</p>}
-          <S.Button $dinamicButton disabled={!name || !email || !password || password != confirmPassword}>Cadastrar</S.Button>
+          <S.Button $dinamicButton 
+            disabled={!name || !email || !password || password != confirmPassword}>
+            Cadastrar
+          </S.Button>
         </S.Form>
         <Link to='/areaAdm'><S.Button>Voltar</S.Button></Link>
     </S.Container>

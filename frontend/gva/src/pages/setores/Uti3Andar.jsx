@@ -1,14 +1,24 @@
 import * as S from '../../styles/Index'
 import { Link } from 'react-router-dom'
-
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export const Uti3Andar = () => {
+  const [ data, setData ] = useState()
+
+  useEffect(() => {
+    axios
+    .get("htt://localhost/api/status")
+    .then((res) => {
+      return setData(res.data)
+
+    }).catch((error) => {
+      console.log(error);
+    })
+  },[])
   return (
     <S.Container>
         <h3>UTI 3º Andar</h3>
-        <Link to="escala">
-          <p>....</p>
-        </Link>
 
         <S.Setores>
             <S.Ul direction>

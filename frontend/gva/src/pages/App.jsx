@@ -1,32 +1,20 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useContext } from "react";
 import NavBar from "../components/NavBar";
 import GlobalStyle from "../styles/globalstyle";
 import Footer from "../components/Footer";
-import { AuthProvider } from "../store/User";
-
-
+import { AuthContext } from "../hooks/UseAuthenticator";
 function App() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (!user) {
-      navigate("/login");
-    }
-  }, []);
-
+  const { isVerificad } = useContext(AuthContext)
+  isVerificad()
   return (
-    <AuthProvider>
+    <div>
       <GlobalStyle />
-        <div>
-          <NavBar />
-          <Outlet />
-          <Footer />
-        </div>
-    </AuthProvider>
+      <NavBar />
+      <Outlet />
+      <Footer />
+    </div>
   );
 }
 
 export default App;
-

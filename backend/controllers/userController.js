@@ -7,7 +7,7 @@ dotenv.config();
 
 const userRouter = {
   create: async (req, res) => {
-    const { name, email, password, adm } = req.body;
+    const { name, email, password, adm, enf } = req.body;
     try {
       
       // Verifica se o e-mail já existe no banco de dados
@@ -24,7 +24,8 @@ const userRouter = {
         name,
         email,
         password: await bcrypt.hash(password, 12),
-        adm
+        adm,
+        enf
       });
 
       res.status(201).json({response, msg: "Criado com sucesso!" });

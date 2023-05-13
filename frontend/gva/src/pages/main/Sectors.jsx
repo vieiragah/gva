@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import * as S from '../../styles/Index'
-
+import { AuthContext } from "../../hooks/UseAuthenticator";
+import { useContext } from "react";
 
 const Sectors = () => {
+  const { enf, adm } = useContext(AuthContext)
   return (
     <S.Container>
       <h2>Setores</h2>
@@ -32,6 +34,9 @@ const Sectors = () => {
           <Link to="uticirurgica">UTI Cirúrgica</Link>
         </S.Sectors>
       </S.Setores>
+      {enf || adm ? (
+        <Link to='escala'>Status</Link>
+      ): null}
       <Link to='/'><S.Button>Voltar</S.Button></Link>
     </S.Container>
   );
