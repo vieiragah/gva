@@ -24,7 +24,8 @@
     "morgan": "^1.10.0",
     "ngrok": "^4.3.3",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
