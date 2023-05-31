@@ -3,25 +3,40 @@ import { Schema, model } from "mongoose";
 const SectorSchema = new Schema(
   {
     //Nome do andar
-    nome: {
+    sector: {
       type: String,
       require: true
     },
-    //Quantidade de pacientes neste andar
-    // bed_quantity: {
-    //   type: Number,
-    //   maxLength: 100,
-    // },
+    bedNumber: {
+      type: String,
+      require: true
+    },
     //Leito com status
-    bed: [
+    status:
       {
         type: String,
-        enum: ["good", "bad", "critical"]
+        enum: ["empty","good", "bad", "critical"]
       },
-    ],
-  },
-  { timestamps: true }
+  },{ timestamps: true }
 );
 const Sector = model("Sector", SectorSchema);
 
 export default Sector;
+
+// 
+
+  //   //Nome do andar
+  //   name: {
+  //     type: String,
+  //     require: true
+  //   },
+  //   bed_name: {
+  //     type: String,
+  //     require: true
+  //   },
+  //   //Leito com status
+  //   bed:
+  //     {
+  //       type: String,
+  //       enum: ["empty","good", "bad", "critical"]
+  //     },

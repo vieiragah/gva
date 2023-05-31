@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 export const Uti3Andar = () => {
-  const [ data, setData ] = useState()
+  const [ data, setData ] = useState([])
 
   useEffect(() => {
     axios
-    .get("htt://localhost/api/status")
+    .get("http://localhost:3000/api/status")
     .then((res) => {
+      console.log(data);
       return setData(res.data)
-
     }).catch((error) => {
       console.log(error);
     })
@@ -23,15 +23,16 @@ export const Uti3Andar = () => {
         <S.Setores>
             <S.Ul direction>
                 <h4>Número de pacientes</h4>
-                <S.Li secundary>Leito 1 <span>v</span></S.Li>
-                <S.Li secundary>Leito 2 <span>a</span></S.Li>
-                <S.Li secundary>Leito 3 <span>v</span></S.Li>
+                {data.map((status) => {
+                  return(
+                    <S.Li secundary >{status.name}</S.Li>
+                  )
+                })}
             </S.Ul>
             <S.Ul direction>
                 <h4>Funcionários</h4>
                 <S.Li>valor dinâmico</S.Li>
                 <S.Li>valor dinâmico</S.Li>
-
             </S.Ul>
         </S.Setores>
         <Link to='/sectors'><S.Button>Voltar</S.Button></Link>

@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { HttpClient } from "../../api";
 
 export const Div = styled.div`
   display: inline-block;
@@ -16,87 +16,79 @@ export const Div = styled.div`
 `;
 
 const Escala = () => {
-  const [empty, setEmpty] = useState("");
-  const [good, setGood] = useState("");
-  const [bad, setBad] = useState("");
-  const [critical, setCritical] = useState("");
-  const [nome, setNome] = useState("");
-  const [bedQuantity, setBedQuantity] = useState();
+  const [sector, setSector] = useState("");
+  const [bedQuantity, setBedQuantity] = useState(3);
+  const [bedNumber, _setNumber] = useState("");
+  const [status, setStatus] = useState("");
+  const [selectedBed, setSelectedBed] = useState("");
 
-  const statusPacient = axios.create({
-    baseURL: "http://localhost:3000/api"
-  });
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log({ sector, bedNumber, status });
 
-    const bedStatus = empty
-      ? "empty"
-      : good
-      ? "good"
-      : bad
-      ? "bad"
-      : critical
-      ? "critical"
-      : "";
 
-    statusPacient
-      .post("/status", {
-        nome: nome,
-        // bed_quantity: bedQuantity,
-        bed: Array(bedStatus)
-      })
-      .then(res => {
+    HttpClient.post("/status", {
+      sector,
+      bedNumber: selectedBed,
+      status,
+    })
+      .then((res) => {
         console.log(res);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
-  // Aqui no front estou tentando enviar o form para o db, após isso vou colocar a lógica dentro do context
-  //A lógica será o for que renderiza o status de cada leito compátivel com cada leito.
-  //Acho que preciso colocar o empty no schema, para uma possível edição no status desse leito caso tenha admissão.
 
   const renderBed = () => {
     const beds = [];
     for (let i = 1; i <= bedQuantity; i++) {
       beds.push(
         <div key={i}>
-          <h3>Leito {i}</h3>
+          <h3 value={`leito ${i}`}>Leito {i}</h3>
           <label>
             vazio
             <input
               type="radio"
-              name={`option${i}`}
-              value={empty}
-              onChange={() => setEmpty(e.target.value)}
+              name={`bed${i}`}
+              value={"empty"}
+              onChange={(e) =>{ 
+                setStatus(e.target.value)
+                setSelectedBed(`Leito ${i}`)}}
             />
           </label>
           <label>
             Verde
             <input
               type="radio"
-              name={`option${i}`}
-              value={good}
-              onChange={() => setGood(e.target.value)}
+              name={`bed${i}`}
+              value={"good"}
+              onChange={(e) => {
+                setStatus(e.target.value)
+                setSelectedBed(`Leito ${i}`)}}
             />
           </label>
           <label>
             Amarelo
             <input
               type="radio"
-              name={`option${i}`}
-              value={bad}
-              onChange={() => setBad(e.target.value)}
+              name={`bed${i}`}
+              value={"bad"}
+              onChange={(e) => {
+                setStatus(e.target.value)
+                setSelectedBed(`Leito ${i}`)}}
             />
           </label>
           <label>
             Vermelho
             <input
               type="radio"
-              name={`option${i}`}
-              value={critical}
-              onChange={() => setCritical(e.target.value)}
+              name={`bed${i}`}
+              value={"critical"}
+              onChange={(e) => {
+                setStatus(e.target.value)
+                setSelectedBed(`Leito ${i}`)}}
             />
           </label>
         </div>
@@ -109,9 +101,10 @@ const Escala = () => {
     <div>
       <h1>escala</h1>
       <div>
-        <select onChange={e => setNome(e.target.value)}>
-          <option value="UTI BT">UTI BT</option>
+        <select onChange={(e) => setSector(e.target.value)}>
+          <option value="UTI Teste">UTI BT</option>
           <option value="UTI 5 Andar">UTI 5 Andar</option>
+          <option value="UTI 3 Andar">UTI 3 Andar</option>
         </select>
         <form onSubmit={handleSubmit}>
           {renderBed()}
@@ -119,7 +112,7 @@ const Escala = () => {
             type="number"
             placeholder="Quantidade de leitos"
             value={bedQuantity}
-            onChange={e => setBedQuantity(parseInt(e.target.value))}
+            onChange={(e) => setBedQuantity(parseInt(e.target.value))}
           />
           <button type="submit">enviar</button>
         </form>
@@ -132,259 +125,3 @@ const Escala = () => {
 };
 
 export default Escala;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import axios from "axios";
-// import { useState } from "react";
-// import { Link } from "react-router-dom";
-// import styled from "styled-components";
-
-// export const Div = styled.div`
-//     display: inline-block;
-//     background-color: yellow;
-//     padding: 8px 20px;
-//     margin-left: 30px;
-//     text-align: center;
-    
-//     label{
-//         padding: 5px;
-        
-//     } 
-// `;
-
-// const Escala = () => {
-//     // const [status, setStatus] = useState()
-//     const [ empty, setEmpty ] = useState([])
-//     const [ good, setGood ] = useState([])
-//     const [ bad, setBad ] = useState([])
-//     const [ critical, setCritical ] = useState([])
-
-//   const statusPacient = axios.create({
-//     baseURL: 'http://localhost:3000/api'
-//   })
-
-//     function handleSubmit (e) {
-//       e.preventDefault()
-
-//       statusPacient.post(
-//         "/status",
-//         {
-//           nome,
-//           bed_quantity,
-//           bed
-//         }
-//       ).then(res => {
-//         console.log(res.nome);
-//       }).catch(error => {
-//         console.log(error);
-//       })
-      
-//     }
-
-//   return (
-//     <div>
-//       <h1>escala</h1>
-//       <div>
-//         <select>
-//             <option value="nome">UTI BT</option>
-//             <option value="nome">UTI 5 Andar</option>
-//         </select>
-//         <form onSubmit={handleSubmit}>
-//           <Div>
-//           <h3>Leito 1</h3>
-//           <label>
-//             vazio
-//             <input type="radio" 
-//             name="option1"
-//             value={empty}
-//             onChange={(e) => setEmpty(e.target.value)}
-//             />
-//           </label>
-//           <label>
-//             Verde
-//             <input type="radio" 
-//             name="option1"
-//             value={good}
-//             onChange={(e) => setGood(e.target.value)}
-//             />
-//           </label>
-//           <label>
-//             Amarelo
-//             <input type="radio" 
-//             name="option1"
-//             value={bad}
-//             onChange={(e) => setBad(e.target.value)}/>
-//           </label>
-//           <label>
-//             Vermelho
-//             <input type="radio"
-//             name="option1"
-//             value={critical}
-//             onChange={(e) => setCritical(e.target.value)}
-//             />
-//           </label>
-//           </Div>
-//           <button onSubmit={handleSubmit}>enviar</button>
-//         </form>
-//       </div>
-//       <Link to='/sectors'>
-//         <button>Voltar</button>
-//       </Link>
-//     </div>
-//   );
-// };
-
-// export default Escala;
