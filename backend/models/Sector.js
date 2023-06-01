@@ -7,7 +7,7 @@ const SectorSchema = new Schema(
       type: String,
       require: true
     },
-    bedNumber: {
+    bed: {
       type: String,
       require: true
     },

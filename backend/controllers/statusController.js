@@ -2,16 +2,14 @@ import Sector from "../models/Sector.js";
 
 const statusController = {
   post: async (req, res) => {
-    const { sector, bedNumber, status } = req.body;
-
-    const documents = [{ sector, bedNumber, status }];
+    const { documents } = req.body;
     try {
       //Aqui iria o bed_quantity, retirei para testar a lógica no front
-      const response = await Sector.create(documents);
+      const response = await Sector.insertMany(documents);
       res.status(201).json({ response, msg: "status salvo" });
     } catch (error) {
       console.log(error.message);
-      console.log({ msg: "Status não registrado" });
+      console.log({ msg: "Status não registrado", error: error });
       res.status(500).json({ error: "Erro ao registrar o status" });
     }
   },

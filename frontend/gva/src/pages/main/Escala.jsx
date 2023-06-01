@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { HttpClient } from "../../api";
@@ -18,23 +18,28 @@ export const Div = styled.div`
 const Escala = () => {
   const [sector, setSector] = useState("");
   const [bedQuantity, setBedQuantity] = useState(3);
-  const [bedNumber, _setNumber] = useState("");
   const [status, setStatus] = useState("");
   const [selectedBed, setSelectedBed] = useState("");
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    setData((previousData) => [
+      ...previousData,
+      {
+        sector,
+        bed: selectedBed,
+        status,
+      },
+    ]);
+  }, [sector, selectedBed, status]);
+
+  console.log(data);
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({ sector, bedNumber, status });
-
-
-    HttpClient.post("/status", {
-      sector,
-      bedNumber: selectedBed,
-      status,
-    })
+    HttpClient.post("/status", { documents: data.slice(2) })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -53,9 +58,10 @@ const Escala = () => {
               type="radio"
               name={`bed${i}`}
               value={"empty"}
-              onChange={(e) =>{ 
-                setStatus(e.target.value)
-                setSelectedBed(`Leito ${i}`)}}
+              onChange={(e) => {
+                setStatus(e.target.value);
+                setSelectedBed(`Leito ${i}`);
+              }}
             />
           </label>
           <label>
@@ -65,8 +71,9 @@ const Escala = () => {
               name={`bed${i}`}
               value={"good"}
               onChange={(e) => {
-                setStatus(e.target.value)
-                setSelectedBed(`Leito ${i}`)}}
+                setStatus(e.target.value);
+                setSelectedBed(`Leito ${i}`);
+              }}
             />
           </label>
           <label>
@@ -76,8 +83,9 @@ const Escala = () => {
               name={`bed${i}`}
               value={"bad"}
               onChange={(e) => {
-                setStatus(e.target.value)
-                setSelectedBed(`Leito ${i}`)}}
+                setStatus(e.target.value);
+                setSelectedBed(`Leito ${i}`);
+              }}
             />
           </label>
           <label>
@@ -87,8 +95,9 @@ const Escala = () => {
               name={`bed${i}`}
               value={"critical"}
               onChange={(e) => {
-                setStatus(e.target.value)
-                setSelectedBed(`Leito ${i}`)}}
+                setStatus(e.target.value);
+                setSelectedBed(`Leito ${i}`);
+              }}
             />
           </label>
         </div>
@@ -96,13 +105,17 @@ const Escala = () => {
     }
     return beds;
   };
+  
 
   return (
     <div>
       <h1>escala</h1>
       <div>
-        <select onChange={(e) => setSector(e.target.value)}>
-          <option value="UTI Teste">UTI BT</option>
+        <select required onChange={(e) => setSector(e.target.value)}>
+          <option value={null}>
+            Selecionar
+          </option>
+          <option value="UTI BT">UTI BT</option>
           <option value="UTI 5 Andar">UTI 5 Andar</option>
           <option value="UTI 3 Andar">UTI 3 Andar</option>
         </select>
