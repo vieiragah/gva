@@ -8,7 +8,7 @@ export const colors = {
 }
 
 export const Ul = styled.ul`
-  max-width: 500px;
+  max-width: 200px;
   display: flex;
   flex-direction: ${(props) => (props.direction ? "column" : "row")};
   flex-wrap: wrap;

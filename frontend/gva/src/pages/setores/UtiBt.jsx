@@ -1,34 +1,43 @@
 import { Link } from 'react-router-dom'
 import * as S from '../../styles/Index'
-
+import { useState, useEffect } from 'react'
+import { HttpClient } from '../../api'
 
 export const UtiBt = () => {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    HttpClient.get("/status")
+    .then((res) => {
+      // console.log(data);
+      return setData(res.data)
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  },[])
+
+  const sector = "UTI BT"
+
+  const filterSector = data.filter((status) => status.sector === sector)
   return (
     <S.Container>
         <h3>UTI Bt</h3>
         <S.Setores>
-            <S.Ul direction>
                 <h4>Número de pacientes</h4>
-                <S.Li secundary>Leito 1 <span>v</span></S.Li>
-                <S.Li secundary>Leito 2 <span>a</span></S.Li>
-                <S.Li secundary>Leito 3 <span>v</span></S.Li>
-                <S.Li secundary>Leito 4 <span>a</span></S.Li>
-                <S.Li secundary>Leito 5 <span>v</span></S.Li>
-                <S.Li secundary>Leito 6 <span>a</span></S.Li>
-                <S.Li secundary>Leito 7 <span>a</span></S.Li>
-                <S.Li secundary>Leito 8 <span>v</span></S.Li>
-                <S.Li secundary>Leito 9 <span>v</span></S.Li>
-                <S.Li secundary>Leito 10 <span>v</span></S.Li>
-            </S.Ul>
+                {filterSector.map((status) => {
+                  return(
+                    <ul key={status._id} >
+                      <S.Li secundary>{status.bed}</S.Li>
+                      <S.Li secundary>{status.status}</S.Li>
+                    </ul>
+                  )
+                })}
             <S.Ul direction>
                 <h4>Funcionários</h4>
                 <S.Li>valor dinâmico</S.Li>
                 <S.Li>valor dinâmico</S.Li>
-                <S.Li>valor dinâmico</S.Li>
-                <S.Li>valor dinâmico</S.Li>
-                <S.Li>valor dinâmico</S.Li>
-                <S.Li>valor dinâmico</S.Li>
-                <S.Li>valor dinâmico</S.Li>
+
             </S.Ul>
         </S.Setores>
         <Link to='/sectors'><S.Button>Voltar</S.Button></Link>

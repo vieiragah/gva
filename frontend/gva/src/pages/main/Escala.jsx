@@ -1,3 +1,34 @@
+// import { useState } from "react"
+// import styled from "styled-components"
+
+
+// // styles
+// export const Div = styled.div`
+//   height: 40px;
+//   width: 200px;
+//   border-radius: 5px;
+//   background-color: #ccc;
+// `
+// const Escala = () => {
+//   return (
+//     <Div>
+//       <h1>test</h1>
+//     </Div>
+//   )
+// }
+// export default Escala
+
+
+
+
+
+
+
+
+
+
+
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -21,6 +52,15 @@ const Escala = () => {
   const [status, setStatus] = useState("");
   const [selectedBed, setSelectedBed] = useState("");
   const [data, setData] = useState([]);
+
+  // const [mostrar, setMostrar] = useState(false)
+  // const [selectOption, setSelectOption] = useState('')
+
+  // const handleChange = (e) => {
+  //   let option = e.target.value
+  //   setSelectOption(option)
+  //   setMostrar(option !== '');
+  // }
 
   useEffect(() => {
     setData((previousData) => [
@@ -105,16 +145,32 @@ const Escala = () => {
     }
     return beds;
   };
-  
+  // Verifica se o campo "sector" está vazio
+  if (sector === "") {
+    return (
+      <div>
+        <h1>escala</h1>
+        <div>
+          <select required onChange={(e) => setSector(e.target.value)}>
+            <option value={null}>Selecionar</option>
+            <option value="UTI BT">UTI BT</option>
+            <option value="UTI 5 Andar">UTI 5 Andar</option>
+            <option value="UTI 3 Andar">UTI 3 Andar</option>
+          </select>
+        </div>
+        <Link to="/sectors">
+          <button>Voltar</button>
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div>
       <h1>escala</h1>
       <div>
         <select required onChange={(e) => setSector(e.target.value)}>
-          <option value={null}>
-            Selecionar
-          </option>
+          <option value={null}> Selecionar </option>
           <option value="UTI BT">UTI BT</option>
           <option value="UTI 5 Andar">UTI 5 Andar</option>
           <option value="UTI 3 Andar">UTI 3 Andar</option>
