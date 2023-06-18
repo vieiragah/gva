@@ -1,34 +1,3 @@
-// import { useState } from "react"
-// import styled from "styled-components"
-
-
-// // styles
-// export const Div = styled.div`
-//   height: 40px;
-//   width: 200px;
-//   border-radius: 5px;
-//   background-color: #ccc;
-// `
-// const Escala = () => {
-//   return (
-//     <Div>
-//       <h1>test</h1>
-//     </Div>
-//   )
-// }
-// export default Escala
-
-
-
-
-
-
-
-
-
-
-
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -53,14 +22,6 @@ const Escala = () => {
   const [selectedBed, setSelectedBed] = useState("");
   const [data, setData] = useState([]);
 
-  // const [mostrar, setMostrar] = useState(false)
-  // const [selectOption, setSelectOption] = useState('')
-
-  // const handleChange = (e) => {
-  //   let option = e.target.value
-  //   setSelectOption(option)
-  //   setMostrar(option !== '');
-  // }
 
   useEffect(() => {
     setData((previousData) => [

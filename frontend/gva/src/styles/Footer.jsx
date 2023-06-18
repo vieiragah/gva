@@ -4,6 +4,7 @@ export const Footerr = styled.footer`
     background-color: #E8E1E2;
     height: 100px;
     display: flex;
+    
     flex-direction: column;
     align-items: center;
     padding-top: 10px;

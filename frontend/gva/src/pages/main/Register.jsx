@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import * as S from '../../styles/Index'
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -35,7 +36,7 @@ const Register = () => {
         console.log(res.data);
         window.location.reload()
       }).catch(error => {
-        console.log(error.res.data.msg);
+        console.log(error);
       })
 
     };

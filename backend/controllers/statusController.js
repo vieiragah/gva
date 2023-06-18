@@ -8,8 +8,6 @@ const statusController = {
       const response = await Sector.insertMany(documents);
       res.status(201).json({ response, msg: "status salvo" });
     } catch (error) {
-      console.log(error.message);
-      console.log({ msg: "Status não registrado", error: error });
       res.status(500).json({ error: "Erro ao registrar o status" });
     }
   },

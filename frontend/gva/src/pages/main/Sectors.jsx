@@ -35,7 +35,10 @@ const Sectors = () => {
         </S.Sectors>
       </S.Setores>
       {enf || adm ? (
-        <Link to='escala'>Status</Link>
+        <>
+          <Link to='escala'>Status</Link>
+          <Link to='statuslist'>Lista</Link>
+        </>
       ): null}
       <Link to='/'><S.Button>Voltar</S.Button></Link>
     </S.Container>

@@ -2,6 +2,17 @@ import { Link } from 'react-router-dom'
 import * as S from '../../styles/Index'
 import { useState, useEffect } from 'react'
 import { HttpClient } from '../../api'
+import styled from 'styled-components'
+
+export const TestColor = styled.span`
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: green;
+`
+
+
+
 
 export const UtiBt = () => {
   const [data, setData] = useState([])
@@ -29,7 +40,7 @@ export const UtiBt = () => {
                   return(
                     <ul key={status._id} >
                       <S.Li secundary>{status.bed}</S.Li>
-                      <S.Li secundary>{status.status}</S.Li>
+                      <S.Li secundary><TestColor>{status.status}</TestColor></S.Li>
                     </ul>
                   )
                 })}

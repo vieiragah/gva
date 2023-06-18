@@ -8,6 +8,7 @@ import * as Uti from '../pages/setores/index'
 import AreaAdm from '../pages/main/AreaAdm'
 import Sectors from '../pages/main/Sectors';
 import Escala from '../pages/main/Escala';
+import StatusList from '../pages/main/StatusList';
 
 export const routes = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ export const routes = createBrowserRouter([
         {
           path:"/sectors/escala",
           element: <Escala/>
+        },
+        {
+          path:'/sectors/statuslist',
+          element: <StatusList/>
         }
       ]
     },
